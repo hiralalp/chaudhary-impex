@@ -44,6 +44,7 @@ body {
     background: #ffffff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     padding: 1rem 0;
+    margin-bottom: 0;
 }
 
 .header-content {
@@ -254,6 +255,7 @@ nav .dropdown-menu a:hover {
     position: relative;
     width: 100%;
     overflow: hidden;
+    margin-top: 0;
 }
 
 .slider-container {
@@ -267,11 +269,16 @@ nav .dropdown-menu a:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    animation: fadeIn 1s;
+    transition: transform 0.8s ease-in-out;
 }
 
 .slide.active {
     display: block;
+    animation: slideInFromRight 0.8s ease-in-out;
+}
+
+.slide.slide-out-left {
+    animation: slideOutToLeft 0.8s ease-in-out;
 }
 
 .slide img {
@@ -358,9 +365,26 @@ nav .dropdown-menu a:hover {
     background: white;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes slideInFromRight {
+    from { 
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    from { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to { 
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }
 
 /* Keep old hero styles for other pages */
@@ -548,7 +572,7 @@ section {
 }
 
 .coatings-image-placeholder {
-    width: 100%;
+    max-width: 400px;
     margin-top: 1rem;
 }
 
