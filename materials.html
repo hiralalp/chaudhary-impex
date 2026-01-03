@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials - Chaudhary Impex | High-Performance Alloys & Steels</title>
+    <meta name="description" content="Comprehensive range of high-performance materials including stainless steel, duplex, super duplex, nickel alloys, and exotic materials for critical applications.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #ff6b35;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .material-card.premium {
+            border-top-color: #c79100;
+        }
+        
+        .material-card.exotic {
+            border-top-color: #8b5cf6;
+        }
+        
+        .material-header {
+            position: relative;
+        }
+        
+        .material-icon {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .material-header h3 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin: 20px 30px 8px 30px;
+        }
+        
+        .material-subtitle {
+            color: #666;
+            font-size: 0.95em;
+            font-style: italic;
+            margin: 0 30px 20px 30px;
+        }
+        
+        .material-body {
+            padding: 30px;
+        }
+        
+        .material-body p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .specs-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .specs-list h4 {
+            color: #1e3c72;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .specs-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .specs-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #444;
+        }
+        
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .specs-list li strong {
+            color: #1e3c72;
+            display: inline-block;
+            width: 180px;
+        }
+        
+        .grades-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .grade-badge {
+            background: #1e3c72;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .applications {
+            background: #fff8f0;
+            border-left: 4px solid #ff6b35;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        .applications h4 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+        
+        .applications ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .applications li {
+            color: #555;
+            margin: 6px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .cta-button:hover {
+            background: #e55a25;
+            transform: translateX(5px);
+        }
+        
+        .comparison-section {
+            background: #f5f7fa;
+            padding: 60px 20px;
+            margin: 40px 0;
+        }
+        
+        .comparison-table {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table h2 {
+            background: #1e3c72;
+            color: white;
+            padding: 25px;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th {
+            background: #2a5298;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .rating {
+            color: #ff6b35;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .materials-hero h1 {
+                font-size: 2em;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="tel:+912266157017">ðŸ“ž +91 8003801338 / +91 9152802542</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="mailto:info@torqbolt.com">âœ‰ info@torqbolt.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Torq<span style="color: #ff0000;">Bolt</span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="about.html" class="dropdown-toggle">ABOUT US</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html">Company Profile</a></li>
+                                <li><a href="certifications.html">Certifications</a></li>
+                                <li><a href="quality.html">Quality Assurance</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="products.html" class="dropdown-toggle">PRODUCTS</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="products/bolting.html">Bolting</a></li>
+                                <li><a href="products/springs.html">Springs</a></li>
+                                <li><a href="products/forgings.html">Forgings</a></li>
+                                <li><a href="products/retaining-rings.html">Rings</a></li>
+                                <li><a href="products/plugs.html">Plugs</a></li>
+                                <li><a href="products/pins.html">Pins</a></li>
+                                <li><a href="products/thimbles.html">Thimbles</a></li>
+                                <li><a href="products/keys.html">Keys</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="materials.html">MATERIALS</a></li>
+                        <li class="dropdown">
+                            <a href="technical.html" class="dropdown-toggle">TECHNICAL INTELLIGENCE</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="technical/specifications.html">Specifications</a></li>
+                                <li><a href="technical/dimensions.html">Dimensions</a></li>
+                                <li><a href="technical/threads.html">Threads</a></li>
+                                <li><a href="technical/surface-treatments.html">Surface Treatments</a></li>
+                                <li><a href="technical/applications.html">Applications</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="tel:+912266157017"> +91 8003801338 / +91 9152802542</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="mailto:info@torqbolt.com"> info@torqbolt.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="tel:+912266157017">📞 +91 8003801338 / +91 9152802542</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="mailto:info@torqbolt.com">✉ info@torqbolt.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Torq<span style="color: #ff0000;">Bolt</span>
+                </a>
+                <nav class="main-nav">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="about.html" class="dropdown-toggle">ABOUT US</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html">Company Profile</a></li>
+                                <li><a href="certifications.html">Certifications</a></li>
+                                <li><a href="quality.html">Quality Assurance</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="products.html" class="dropdown-toggle">PRODUCTS</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="products/bolting.html">Bolting</a></li>
+                                <li><a href="products/springs.html">Springs</a></li>
+                                <li><a href="products/forgings.html">Forgings</a></li>
+                                <li><a href="products/retaining-rings.html">Rings</a></li>
+                                <li><a href="products/plugs.html">Plugs</a></li>
+                                <li><a href="products/pins.html">Pins</a></li>
+                                <li><a href="products/thimbles.html">Thimbles</a></li>
+                                <li><a href="products/keys.html">Keys</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="materials.html">MATERIALS</a></li>
+                        <li class="dropdown">
+                            <a href="technical.html" class="dropdown-toggle">TECHNICAL INTELLIGENCE</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="technical/specifications.html">Specifications</a></li>
+                                <li><a href="technical/dimensions.html">Dimensions</a></li>
+                                <li><a href="technical/threads.html">Threads</a></li>
+                                <li><a href="technical/surface-treatments.html">Surface Treatments</a></li>
+                                <li><a href="technical/applications.html">Applications</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Engineering Materials</h1>
+            <p>From standard carbon steel to exotic superalloys, we supply materials engineered for the most demanding environments. Our comprehensive material portfolio ensures optimal performance, longevity, and reliability across all critical applications.</p>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            <div class="materials-grid">
+            <!-- Stainless Steel -->
+            <div class="material-card">
+                <div class="material-header">
+                    <div class="material-icon">[Image Placeholder]</div>
+                    <h3>Stainless Steel</h3>
+                    <p class="material-subtitle">Corrosion-Resistant Excellence</p>
+                </div>
+                <div class="material-body">
+                    <p>Our stainless steel materials offer superior corrosion resistance, excellent mechanical properties, and outstanding durability. Ideal for applications requiring hygiene, aesthetic appeal, and long-term reliability.</p>
+                    
+                    <div class="specs-list">
+                        <h4>Key Specifications</h4>
+                        <ul>
+                            <li><strong>Tensile Strength:</strong> 515-860 MPa</li>
+                            <li><strong>Temperature Range:</strong> -200°C to +400°C</li>
+                            <li><strong>Corrosion Rating:</strong> Excellent</li>
+                            <li><strong>Magnetic:</strong> Varies by grade</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Popular Grades:</h4>
+                    <div class="grades-container">
+                        <span class="grade-badge">304/304L</span>
+                        <span class="grade-badge">316/316L</span>
+                        <span class="grade-badge">321</span>
+                        <span class="grade-badge">347</span>
+                        <span class="grade-badge">410</span>
+                        <span class="grade-badge">430</span>
+                    </div>
+                    
+                    <div class="applications">
+                        <h4>Typical Applications</h4>
+                        <ul>
+                            <li>Food & pharmaceutical processing equipment</li>
+                            <li>Chemical processing plants</li>
+                            <li>Marine environments</li>
+                            <li>Architectural applications</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="materials/stainless-steel.html" class="cta-button">Explore Stainless Steel →</a>
+                </div>
+            </div>
+
+            <!-- Duplex & Super Duplex -->
+            <div class="material-card premium">
+                <div class="material-header">
+                    <div class="material-icon">[Image Placeholder]</div>
+                    <h3>Duplex & Super Duplex</h3>
+                    <p class="material-subtitle">High-Strength Corrosion Fighters</p>
+                </div>
+                <div class="material-body">
+                    <p>Combining the best properties of austenitic and ferritic stainless steels, duplex materials deliver exceptional strength and superior corrosion resistance, particularly against stress corrosion cracking and pitting.</p>
+                    
+                    <div class="specs-list">
+                        <h4>Key Specifications</h4>
+                        <ul>
+                            <li><strong>Tensile Strength:</strong> 620-900 MPa</li>
+                            <li><strong>Temperature Range:</strong> -50°C to +300°C</li>
+                            <li><strong>PREN:</strong> 30-45+</li>
+                            <li><strong>Yield Strength:</strong> 2x Austenitic SS</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Available Grades:</h4>
+                    <div class="grades-container">
+                        <span class="grade-badge">2205</span>
+                        <span class="grade-badge">2507</span>
+                        <span class="grade-badge">S31803</span>
+                        <span class="grade-badge">S32750</span>
+                        <span class="grade-badge">S32760</span>
+                    </div>
+                    
+                    <div class="applications">
+                        <h4>Typical Applications</h4>
+                        <ul>
+                            <li>Offshore oil & gas platforms</li>
+                            <li>Subsea equipment & pipelines</li>
+                            <li>Desalination plants</li>
+                            <li>Chemical tankers</li>
+                            <li>High-chloride environments</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="materials/duplex-steel.html" class="cta-button">Explore Duplex Steel →</a>
+                </div>
+            </div>
+
+            <!-- Nickel Alloys -->
+            <div class="material-card exotic">
+                <div class="material-header">
+                    <div class="material-icon">[Image Placeholder]</div>
+                    <h3>Nickel Alloys</h3>
+                    <p class="material-subtitle">Extreme Performance Materials</p>
+                </div>
+                <div class="material-body">
+                    <p>Premium nickel-based superalloys engineered for the most extreme conditions. Exceptional resistance to high temperatures, oxidation, and aggressive chemical environments where standard materials fail.</p>
+                    
+                    <div class="specs-list">
+                        <h4>Key Specifications</h4>
+                        <ul>
+                            <li><strong>Tensile Strength:</strong> 550-1400 MPa</li>
+                            <li><strong>Temperature Range:</strong> -200°C to +1200°C</li>
+                            <li><strong>Corrosion Rating:</strong> Superior</li>
+                            <li><strong>Oxidation:</strong> Excellent resistance</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Premium Alloys:</h4>
+                    <div class="grades-container">
+                        <span class="grade-badge">Inconel 625</span>
+                        <span class="grade-badge">Inconel 718</span>
+                        <span class="grade-badge">Hastelloy C276</span>
+                        <span class="grade-badge">Monel 400</span>
+                        <span class="grade-badge">Incoloy 800</span>
+                    </div>
+                    
+                    <div class="applications">
+                        <h4>Typical Applications</h4>
+                        <ul>
+                            <li>Aerospace & jet engines</li>
+                            <li>Nuclear power generation</li>
+                            <li>Petrochemical processing</li>
+                            <li>High-temperature furnaces</li>
+                            <li>Acid production facilities</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="materials/nickel-alloys.html" class="cta-button">Explore Nickel Alloys →</a>
+                </div>
+            </div>
+
+            <!-- Alloy Steel -->
+            <div class="material-card">
+                <div class="material-header">
+                    <div class="material-icon">[Image Placeholder]</div>
+                    <h3>Alloy Steel</h3>
+                    <p class="material-subtitle">Strength & Toughness Combined</p>
+                </div>
+                <div class="material-body">
+                    <p>High-performance alloy steels with enhanced mechanical properties through controlled alloying. Designed for high-stress applications requiring superior strength, hardness, and wear resistance.</p>
+                    
+                    <div class="specs-list">
+                        <h4>Key Specifications</h4>
+                        <ul>
+                            <li><strong>Tensile Strength:</strong> 860-1200 MPa</li>
+                            <li><strong>Temperature Range:</strong> -40°C to +550°C</li>
+                            <li><strong>Hardness:</strong> HRC 25-50</li>
+                            <li><strong>Impact Strength:</strong> Excellent</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Available Grades:</h4>
+                    <div class="grades-container">
+                        <span class="grade-badge">4140</span>
+                        <span class="grade-badge">4340</span>
+                        <span class="grade-badge">8620</span>
+                        <span class="grade-badge">B7/B7M</span>
+                        <span class="grade-badge">L7/L7M</span>
+                    </div>
+                    
+                    <div class="applications">
+                        <h4>Typical Applications</h4>
+                        <ul>
+                            <li>Heavy machinery components</li>
+                            <li>High-pressure fasteners</li>
+                            <li>Automotive & industrial gears</li>
+                            <li>Mining equipment</li>
+                            <li>Power generation turbines</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="materials/alloy-steel.html" class="cta-button">Explore Alloy Steel →</a>
+                </div>
+            </div>
+
+            <!-- Carbon Steel -->
+            <div class="material-card">
+                <div class="material-header">
+                    <div class="material-icon">[Image Placeholder]</div>
+                    <h3>Carbon Steel</h3>
+                    <p class="material-subtitle">Reliable & Cost-Effective</p>
+                </div>
+                <div class="material-body">
+                    <p>Versatile and economical carbon steel materials offering excellent strength and machinability. The workhorse of industrial applications, available in various grades to match specific performance requirements.</p>
+                    
+                    <div class="specs-list">
+                        <h4>Key Specifications</h4>
+                        <ul>
+                            <li><strong>Tensile Strength:</strong> 400-850 MPa</li>
+                            <li><strong>Temperature Range:</strong> -20°C to +425°C</li>
+                            <li><strong>Carbon Content:</strong> 0.05%-1.5%</li>
+                            <li><strong>Weldability:</strong> Excellent</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Common Grades:</h4>
+                    <div class="grades-container">
+                        <span class="grade-badge">A36</span>
+                        <span class="grade-badge">1018</span>
+                        <span class="grade-badge">1045</span>
+                        <span class="grade-badge">A193 B7</span>
+                        <span class="grade-badge">A307</span>
+                        <span class="grade-badge">SAE 1020</span>
+                    </div>
+                    
+                    <div class="applications">
+                        <h4>Typical Applications</h4>
+                        <ul>
+                            <li>General construction & structural</li>
+                            <li>Standard fasteners & hardware</li>
+                            <li>Machinery frames & supports</li>
+                            <li>Automotive components</li>
+                            <li>Pipeline & pressure vessels</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="materials/carbon-steel.html" class="cta-button">Explore Carbon Steel →</a>
+                </div>
+            </div>
+
+            <!-- Exotic Alloys -->
+            <div class="material-card exotic">
+                <div class="material-header">
+                    <div class="material-icon">[Image Placeholder]</div>
+                    <h3>Exotic Alloys</h3>
+                    <p class="material-subtitle">Ultra-Premium Solutions</p>
+                </div>
+                <div class="material-body">
+                    <p>Specialized superalloys and exotic materials for the most challenging applications. Engineered for environments where conventional materials cannot survive, offering unmatched performance characteristics.</p>
+                    
+                    <div class="specs-list">
+                        <h4>Key Specifications</h4>
+                        <ul>
+                            <li><strong>Tensile Strength:</strong> 700-1500+ MPa</li>
+                            <li><strong>Temperature Range:</strong> -270°C to +1300°C</li>
+                            <li><strong>Special Properties:</strong> Custom engineered</li>
+                            <li><strong>Availability:</strong> Custom order</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Exotic Materials:</h4>
+                    <div class="grades-container">
+                        <span class="grade-badge">Titanium</span>
+                        <span class="grade-badge">Zirconium</span>
+                        <span class="grade-badge">Tantalum</span>
+                        <span class="grade-badge">Nimonic</span>
+                        <span class="grade-badge">Stellite</span>
+                        <span class="grade-badge">Waspaloy</span>
+                    </div>
+                    
+                    <div class="applications">
+                        <h4>Typical Applications</h4>
+                        <ul>
+                            <li>Aerospace critical components</li>
+                            <li>Medical implants & instruments</li>
+                            <li>Nuclear reactor internals</li>
+                            <li>Cryogenic equipment</li>
+                            <li>Extreme chemical processing</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="materials/exotic-alloys.html" class="cta-button">Explore Exotic Alloys →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-table">
+                <h2>Material Selection Guide</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material Type</th>
+                            <th>Corrosion Resistance</th>
+                            <th>Strength</th>
+                            <th>Temperature Capability</th>
+                            <th>Cost</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Carbon Steel</strong></td>
+                            <td class="rating">★★☆☆☆</td>
+                            <td class="rating">★★★☆☆</td>
+                            <td class="rating">★★★☆☆</td>
+                            <td class="rating">$</td>
+                            <td>General purpose, structural</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alloy Steel</strong></td>
+                            <td class="rating">★★★☆☆</td>
+                            <td class="rating">★★★★☆</td>
+                            <td class="rating">★★★★☆</td>
+                            <td class="rating">$$</td>
+                            <td>High-stress, heavy duty</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stainless Steel</strong></td>
+                            <td class="rating">★★★★☆</td>
+                            <td class="rating">★★★☆☆</td>
+                            <td class="rating">★★★☆☆</td>
+                            <td class="rating">$$</td>
+                            <td>Corrosive environments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duplex Steel</strong></td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">★★★☆☆</td>
+                            <td class="rating">$$$</td>
+                            <td>Offshore, high-chloride</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nickel Alloys</strong></td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">★★★★☆</td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">$$$$</td>
+                            <td>Extreme conditions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exotic Alloys</strong></td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">★★★★★</td>
+                            <td class="rating">$$$$$</td>
+                            <td>Aerospace, nuclear, medical</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" style="background: #1e3c72; color: white; padding: 60px 20px; text-align: center; margin-top: 0;">
+        <div class="container">
+            <h2 style="font-size: 2.5em; margin-bottom: 20px;">Need Help Selecting the Right Material?</h2>
+            <p style="font-size: 1.2em; max-width: 700px; margin: 0 auto 30px; line-height: 1.6;">
+                Our materials engineers are ready to help you choose the optimal material for your specific application, environment, and performance requirements.
+            </p>
+            <a href="contact.html" class="cta-button" style="background: #ff6b35; font-size: 1.1em; padding: 15px 40px;">
+                Consult Our Experts →
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Chaudhary Impex</h3>
+                    <p>Leading supplier of premium fasteners and engineering materials for critical applications worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="materials.html">Materials</a></li>
+                        <li><a href="certifications.html">Certifications</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: info@chaudharyimpex.com</p>
+                    <p>Phone: +91-XXX-XXX-XXXX</p>
+                    <p>Address: India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Chaudhary Impex. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="sitemap.html">Sitemap</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
