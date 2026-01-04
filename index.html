@@ -171,8 +171,27 @@
     </section>
 
     <script>
-        let slideIndex = 1;
+        let slideIndex = 0;
         let slideTimer;
+        let isTransitioning = false;
+        
+        // Initialize first slide
+        function initSlider() {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            // Hide all slides initially
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+                slides[i].classList.remove('active', 'slide-in', 'slide-out');
+            }
+            
+            // Show first slide
+            slides[0].style.display = 'block';
+            slides[0].classList.add('active');
+            dots[0].classList.add('active');
+            slideIndex = 0;
+        }
         
         // Auto-advance slides every 5 seconds
         function startSlideShow() {
@@ -187,36 +206,71 @@
         }
         
         function changeSlide(n) {
-            showSlide(slideIndex += n);
+            if (isTransitioning) return;
+            showSlide(n);
             resetTimer();
         }
         
         function currentSlide(n) {
-            showSlide(slideIndex = n);
+            if (isTransitioning) return;
+            slideIndex = n - 1;
+            showSlide(0);
             resetTimer();
         }
         
-        function showSlide(n) {
+        function showSlide(direction) {
+            isTransitioning = true;
             let slides = document.getElementsByClassName("slide");
             let dots = document.getElementsByClassName("dot");
             
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
+            // Calculate next slide index
+            let currentIndex = slideIndex;
+            slideIndex = slideIndex + direction;
             
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active");
-            }
+            // Loop around
+            if (slideIndex >= slides.length) { slideIndex = 0; }
+            if (slideIndex < 0) { slideIndex = slides.length - 1; }
             
+            let currentSlide = slides[currentIndex];
+            let nextSlide = slides[slideIndex];
+            
+            // Make sure next slide is ready but hidden
+            nextSlide.style.display = 'block';
+            nextSlide.classList.remove('active', 'slide-in', 'slide-out');
+            
+            // Force reflow
+            void nextSlide.offsetWidth;
+            
+            // Start animations
+            currentSlide.classList.remove('active');
+            currentSlide.classList.add('slide-out');
+            nextSlide.classList.add('slide-in');
+            
+            // After animation completes
+            setTimeout(() => {
+                // Hide and clean up old slide
+                currentSlide.style.display = 'none';
+                currentSlide.classList.remove('slide-out');
+                
+                // Activate new slide
+                nextSlide.classList.remove('slide-in');
+                nextSlide.classList.add('active');
+                
+                isTransitioning = false;
+            }, 1000);
+            
+            // Update dots
             for (let i = 0; i < dots.length; i++) {
                 dots[i].classList.remove("active");
             }
-            
-            slides[slideIndex - 1].classList.add("active");
-            dots[slideIndex - 1].classList.add("active");
+            dots[slideIndex].classList.add("active");
         }
         
-        // Start the slideshow when page loads
-        startSlideShow();
+        // Initialize and start
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlider();
+            startSlideShow();
+        });
     </script>
 
     <!-- Coatings and Bolting Section -->
@@ -266,7 +320,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-200">
+                <div class="gallery-item scroll-scale delay-200">
                     <div class="gallery-image">
                         <img src="img/home-pic-3.jpg" alt="12PT Bolt" loading="lazy">
                     </div>
@@ -276,7 +330,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-300">
+                <div class="gallery-item scroll-scale delay-300">
                     <div class="gallery-image">
                         <img src="img/home-pic-5.jpg" alt="Tap Stud" loading="lazy">
                     </div>
@@ -286,7 +340,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-400">
+                <div class="gallery-item scroll-scale delay-400">
                     <div class="gallery-image">
                         <img src="img/home-pic-2.jpg" alt="Stud Bolt" loading="lazy">
                     </div>
@@ -296,7 +350,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-500">
+                <div class="gallery-item scroll-scale delay-500">
                     <div class="gallery-image">
                         <img src="img/home-pic-4.jpg" alt="Weld Stud" loading="lazy">
                     </div>
@@ -306,7 +360,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-600">
+                <div class="gallery-item scroll-scale delay-600">
                     <div class="gallery-image">
                         <img src="img/home-pic-6.jpg" alt="Stud Bolt & Nut" loading="lazy">
                     </div>
@@ -316,7 +370,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-100">
+                <div class="gallery-item scroll-scale delay-100">
                     <div class="gallery-image">
                         <img src="img/home-pic-7.jpg" alt="U-Bolt" loading="lazy">
                     </div>
@@ -326,7 +380,7 @@
                     </div>
                 </div>
                 
-                <div class="gallery-item"> scroll-scale delay-200">
+                <div class="gallery-item scroll-scale delay-200">
                     <div class="gallery-image">
                         <img src="img/home-pic-8.jpg" alt="Coupling Set" loading="lazy">
                     </div>
@@ -478,12 +532,17 @@
     </footer>
 
     <script>
-        // Scroll Animation Observer
+        // Scroll Animation Observer - Animates every time element enters viewport
         document.addEventListener('DOMContentLoaded', function() {
             const animateOnScroll = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Add animation class when element enters viewport
                         entry.target.classList.add('aos-animate');
+                    } else {
+                        // Remove animation class when element leaves viewport
+                        // This allows animation to trigger again on next scroll
+                        entry.target.classList.remove('aos-animate');
                     }
                 });
             }, {
