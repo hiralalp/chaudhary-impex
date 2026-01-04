@@ -90,45 +90,45 @@ function Update-Header {
     }
     
     # Insert new header after body tag
-    $content = $content -replace '<body>', ("<body>`r`n" + $newHeader)
+    $content = $content -replace '<body>', ("<body>`r" + $newHeader)
     
     Set-Content $FilePath $content -Encoding UTF8 -NoNewline
     Write-Host "Updated: $FilePath"
 }
 
 # Update root level files
-Write-Host "`nUpdating root level files..."
+Write-Host "Updating root level files..."
 $rootFiles = Get-ChildItem "*.html" -Exclude "index.html"
 foreach ($file in $rootFiles) {
     Update-Header -FilePath $file.FullName -BasePath "" -IndexPath "index.html"
 }
 
 # Update products/*.html
-Write-Host "`nUpdating products/*.html..."
+Write-Host "Updating products/*.html..."
 $productsFiles = Get-ChildItem "products/*.html" -ErrorAction SilentlyContinue
 foreach ($file in $productsFiles) {
     Update-Header -FilePath $file.FullName -BasePath "../" -IndexPath "../index.html"
 }
 
 # Update materials/*.html
-Write-Host "`nUpdating materials/*.html..."
+Write-Host "Updating materials/*.html..."
 $materialsFiles = Get-ChildItem "materials/*.html" -ErrorAction SilentlyContinue
 foreach ($file in $materialsFiles) {
     Update-Header -FilePath $file.FullName -BasePath "../" -IndexPath "../index.html"
 }
 
 # Update technical/*.html
-Write-Host "`nUpdating technical/*.html..."
+Write-Host "Updating technical/*.html..."
 $technicalFiles = Get-ChildItem "technical/*.html" -ErrorAction SilentlyContinue
 foreach ($file in $technicalFiles) {
     Update-Header -FilePath $file.FullName -BasePath "../" -IndexPath "../index.html"
 }
 
 # Update standards/*.html
-Write-Host "`nUpdating standards/*.html..."
+Write-Host "Updating standards/*.html..."
 $standardsFiles = Get-ChildItem "standards/*.html" -ErrorAction SilentlyContinue
 foreach ($file in $standardsFiles) {
     Update-Header -FilePath $file.FullName -BasePath "../" -IndexPath "../index.html"
 }
 
-Write-Host "`nAll headers updated successfully!"
+Write-Host "All headers updated successfully!"
