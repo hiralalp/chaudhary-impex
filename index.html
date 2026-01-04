@@ -88,6 +88,11 @@
                 <a href="index.html" class="logo">
                     <img src="img/Chaudhary_Impex_logo.png" alt="Chaudhary Impex" />
                 </a>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <nav class="main-nav">
                     <ul>
                         <li class="dropdown">
@@ -531,7 +536,55 @@
         </div>
     </footer>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay"></div>
+
     <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const dropdownToggles = document.querySelectorAll('.main-nav .dropdown-toggle');
+            
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mainNav.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Handle dropdown clicks on mobile
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = this.parentElement;
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Close menu on window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    menuToggle.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
         // Scroll Animation Observer - Animates every time element enters viewport
         document.addEventListener('DOMContentLoaded', function() {
             const animateOnScroll = new IntersectionObserver((entries) => {
