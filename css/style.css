@@ -5,10 +5,107 @@
     box-sizing: border-box;
 }
 
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
+}
+
+/* Fade-in animation for sections */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Apply animations to sections */
+section {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Card animations */
+.product-card,
+.material-card,
+.gallery-item,
+.cert-badge {
+    animation: scaleIn 0.6s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover,
+.material-card:hover,
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Image animations */
+.product-image img,
+.gallery-image img,
+.material-icon img {
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.product-card:hover .product-image img,
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.05);
+}
+
+/* Button animations */
+.btn,
+button,
+input[type="submit"] {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active,
+button:active,
+input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Link animations */
+a {
+    transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 .container {
@@ -46,6 +143,7 @@ body {
     padding: 1rem 0;
     margin: 0;
     margin-bottom: 0;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .header-content {
@@ -128,21 +226,24 @@ body {
     margin-top: 0.5rem;
     z-index: 1000;
     padding: 0.5rem 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     opacity: 0;
     visibility: hidden;
+    transform: translateY(-10px);
 }
 
 .main-nav .dropdown:hover .dropdown-menu {
     display: block;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 .main-nav .dropdown-menu:hover {
     display: block;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 .main-nav .dropdown-menu li {
@@ -155,11 +256,13 @@ body {
     font-size: 0.9rem;
     font-weight: normal;
     text-align: left;
+    transition: background 0.3s ease, color 0.3s ease, padding-left 0.3s ease;
 }
 
 .main-nav .dropdown-menu a:hover {
     background: #f5f5f5;
     color: #8b6f47;
+    padding-left: 2rem;
 }
 
 /* Old header styles - kept for backward compatibility with other pages */
