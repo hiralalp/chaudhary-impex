@@ -11,7 +11,7 @@
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-content">
-                <div class="top-bar-left">                    <a href="tel:+919137649885">&#9742; 9137649885 / 7738396216</a>                </div>
+                <div class="top-bar-left">                    <a href="tel:+919137649885">&#9742; 9137649885 / 7738682153</a>                </div>
                 <div class="top-bar-right">                    <a href="mailto:chaudharyimpex6@gmail.com">&#9993; chaudharyimpex6@gmail.com</a>                </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                 <!-- Contact Form -->
                 <div class="contact-form" style="background: #f8f9fa; padding: 45px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: none !important; margin: 0;">
                     <h2 style="color: #1e3c72; margin-bottom: 25px;">Send us a Message</h2>
-                    <form action="#" method="post" style="width: 100%; max-width: none;">
+                    <form id="contactForm" action="#" method="post" style="width: 100%; max-width: none;" onsubmit="return sendToWhatsApp(event);">
                         <div class="form-group" style="margin-bottom: 20px; max-width: none;">
                             <label for="name" style="display: block; margin-bottom: 8px; color: #1e3c72; font-weight: 600;">Name *</label>
                             <input type="text" id="name" name="name" required style="width: 100%; max-width: none; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 1em; box-sizing: border-box;">
@@ -119,9 +119,9 @@
                                 <div style="background: #1e3c72; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5em; flex-shrink: 0;">&#128205;</div>
                                 <div>
                                     <h3 style="color: #1e3c72; margin-bottom: 8px; font-size: 1.2em;">Address</h3>
-                                    <p style="color: #555; line-height: 1.6; margin: 0;">1A, Ground Floor, Building No. 11/13<br>
-                                    2nd Cross Lane, 64 Khetwadi Back Road<br>
-                                    Girgaon, Mumbai - 400004, Maharashtra, India</p>
+                                    <p style="color: #555; line-height: 1.6; margin: 0;">Ground Floor,Building No./Flat No.: 104-106<br>
+                                    Shop No. 1,Rajaram Niwas,Kamathipura 5th Lane<br>
+                                    Mumbai - 400008, Maharashtra, India</p>
                                 </div>
                             </div>
                         </div>
@@ -154,8 +154,7 @@
                     <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                         <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.2em;">Business Hours</h3>
                         <p style="color: #555; line-height: 1.8; margin: 0;">
-                            <strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM<br>
-                            <strong>Saturday:</strong> 9:00 AM - 2:00 PM<br>
+                            <strong>Monday - Saturday:</strong> 9:00 AM - 9:00 PM<br>
                             <strong>Sunday:</strong> Closed
                         </p>
                     </div>
@@ -209,7 +208,7 @@
                     <p>&#128205; 1A, Ground Floor, Building No. 11/13<br>
                     2nd Cross Lane, 64 Khetwadi Back Road<br>
                     Girgaon, Mumbai - 400004, Maharashtra, India</p>
-                    <p>&#128222; 9137649885 / 7738396216<br>
+                    <p>&#128222; 9137649885 / 7738682153<br>
                     &#9993; chaudharyimpex6@gmail.com</p>
                 </div>
             </div>
@@ -263,6 +262,40 @@
                 }
             });
         });
+
+        // Send contact form data to WhatsApp
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            var whatsappNumber = '919137649885'; // Country code (91) + number, digits only
+
+            var form = document.getElementById('contactForm');
+            var name    = (form.name.value    || '').trim();
+            var email   = (form.email.value   || '').trim();
+            var phone   = (form.phone.value   || '').trim();
+            var company = (form.company.value || '').trim();
+            var subject = (form.subject.value || '').trim();
+            var message = (form.message.value || '').trim();
+
+            var lines = [
+                '*New Enquiry from Chaudhary Impex website*',
+                '',
+                '*Name:* '    + name,
+                '*Email:* '   + email
+            ];
+            if (phone)   lines.push('*Phone:* '   + phone);
+            if (company) lines.push('*Company:* ' + company);
+            lines.push('*Subject:* ' + subject);
+            lines.push('');
+            lines.push('*Message:*');
+            lines.push(message);
+
+            var text = encodeURIComponent(lines.join('\n'));
+            var url  = 'https://wa.me/' + whatsappNumber + '?text=' + text;
+
+            window.open(url, '_blank');
+            return false;
+        }
     </script>
 </body>
 </html>

@@ -807,12 +807,19 @@ section {
     height: 280px;
     overflow: hidden;
     background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .gallery-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.3s;
 }
 
@@ -1268,4 +1275,287 @@ footer {
 img {
     max-width: 100%;
     height: auto;
+}
+/* ===========================
+   OUR CLIENTS SECTION
+=========================== */
+
+.clients{
+    padding:80px 0;
+    background:#ffffff;
+    position:relative;
+}
+
+.clients .section-title{
+    margin-bottom:50px;
+}
+
+/* Slider */
+
+.clients-slider{
+    width:100%;
+    overflow:hidden;
+    position:relative;
+    margin:40px 0 50px;
+}
+
+/* Optional fade effect on left/right */
+
+.clients-slider::before,
+.clients-slider::after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:120px;
+    height:100%;
+    z-index:2;
+    pointer-events:none;
+}
+
+.clients-slider::before{
+    left:0;
+    background:linear-gradient(to right,#fff 0%,rgba(255,255,255,0) 100%);
+}
+
+.clients-slider::after{
+    right:0;
+    background:linear-gradient(to left,#fff 0%,rgba(255,255,255,0) 100%);
+}
+
+/* Track */
+
+.clients-track{
+    display:flex;
+    align-items:center;
+    width:max-content;
+    animation:clientScroll 35s linear infinite;
+}
+
+/* Pause on hover */
+
+.clients-slider:hover .clients-track{
+    animation-play-state:paused;
+}
+
+/* Logo */
+
+.clients-track img{
+
+    width:220px;
+    height:120px;
+
+    object-fit:contain;
+    object-position:center;
+
+    margin:0 35px;
+
+    display:block;
+
+    background:transparent;
+    border:none;
+    outline:none;
+    border-radius:0;
+
+    box-shadow:none;
+
+    filter:none;
+
+    transition:transform .35s ease;
+
+    flex-shrink:0;
+
+    vertical-align:middle;
+}
+
+/* Hover */
+
+.clients-track img:hover{
+    transform:scale(1.08);
+}
+
+/* Animation */
+
+@keyframes clientScroll{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    .clients{
+        padding:60px 0;
+    }
+
+    .clients-track img{
+
+        width:150px;
+        height:80px;
+
+        margin:0 20px;
+
+    }
+
+    .clients-slider::before,
+    .clients-slider::after{
+
+        width:40px;
+
+    }
+
+}
+
+/* =========================================================
+   Global Smooth Edges
+   Softens sharp corners site-wide (visual only - no layout impact)
+   ========================================================= */
+:root {
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-pill: 999px;
+}
+
+/* Cards, panels, callouts, gallery items, media boxes */
+.product-card,
+.material-card,
+.gallery-item,
+.gallery-image,
+.feature-box,
+.cert-badge,
+.industry-card,
+.coating-card,
+.stat-card,
+.info-card,
+.contact-form,
+.card,
+.panel,
+.callout,
+.testimonial,
+.blog-card,
+.pricing-card,
+.spec-card,
+.tech-card,
+.about-card,
+.icon-box,
+.image-box,
+.media-box,
+.thumbnail,
+.tile {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+/* Inner image wrappers inside cards */
+.product-image,
+.gallery-image,
+.material-image,
+.feature-image,
+.card-image,
+.thumbnail img,
+.tile img {
+    border-radius: var(--radius-md);
+}
+
+/* Standalone images that aren't inside a rounded wrapper */
+.rounded-img,
+.about-img,
+.hero-img,
+.section-img,
+figure img,
+.content img:not(.no-round):not(.logo):not(.icon) {
+    border-radius: var(--radius-md);
+}
+
+/* Buttons */
+.btn,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+.button {
+    border-radius: var(--radius-sm);
+}
+
+/* Pill-style CTAs (opt-in via class) */
+.btn-pill,
+.pill {
+    border-radius: var(--radius-pill);
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea,
+.form-control {
+    border-radius: var(--radius-sm);
+}
+
+/* Badges, tags, chips */
+.badge,
+.tag,
+.chip,
+.label-pill {
+    border-radius: var(--radius-pill);
+}
+
+/* Tables with rounded outer edge */
+table.rounded,
+.table-rounded {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Iframes / maps / video embeds */
+iframe,
+video,
+.map-container,
+.video-container {
+    border-radius: var(--radius-md);
+}
+
+/* Alerts / notices */
+.alert,
+.notice,
+.message-box {
+    border-radius: var(--radius-md);
+}
+
+/* Modals / dropdowns / tooltips */
+.modal,
+.modal-content,
+.dropdown-menu,
+.tooltip,
+.popover {
+    border-radius: var(--radius-md);
+}
+
+/* Override any lingering sharp corners in nav dropdowns */
+.main-nav .dropdown-menu {
+    border-radius: var(--radius-md);
+}
+
+/* Kill accidental hard 0-radius overrides on generic buttons */
+button.rounded-0,
+.btn.rounded-0 {
+    border-radius: 0 !important;
 }
