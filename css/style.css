@@ -1554,6 +1554,81 @@ video,
     border-radius: var(--radius-md);
 }
 
+/* Global interaction effects */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-card,
+.material-card,
+.gallery-item,
+.feature-box,
+.cert-badge,
+.industry-card,
+.coating-card,
+.info-card,
+.contact-form {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover,
+.material-card:hover,
+.gallery-item:hover,
+.feature-box:hover,
+.cert-badge:hover,
+.industry-card:hover,
+.coating-card:hover,
+.info-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(16, 48, 92, 0.16);
+}
+
+.product-card:hover img,
+.material-card:hover img,
+.gallery-item:hover img,
+.industry-card:hover img,
+.coating-card:hover img {
+    transform: scale(1.035);
+}
+
+.main-nav > ul > li > a,
+footer a:not(.btn) {
+    text-underline-offset: 0.25em;
+}
+
+.main-nav > ul > li > a:hover,
+footer a:not(.btn):hover {
+    text-decoration-thickness: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* Kill accidental hard 0-radius overrides on generic buttons */
 button.rounded-0,
 .btn.rounded-0 {
